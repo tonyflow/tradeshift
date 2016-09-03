@@ -4,3 +4,5 @@
 .classpath
 .DS_Store
 *.iml
+/src/main/java/interview/classifier-class-diagram.ucls
+/src/main/java/interview/classifier-class-diagram.png

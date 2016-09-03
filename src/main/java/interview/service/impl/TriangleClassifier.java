@@ -9,31 +9,52 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	public TriangleType classify(Triangle t) {
 
 		if (!exists(t)) {
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Zero edged triangle");
 		}
 
-		if (t.getSideA() == 0 || t.getSideB() == 0 || t.getSideC() == 0) {
-			throw new IllegalArgumentException(
-					"Side specifications do not form a triangle."
-							+ t.toString());
+		if (isDegenerate(t)) {
+			throw new IllegalArgumentException("Degenerate triangle");
 		}
+
+		// if (t.getSideA() == 0 || t.getSideB() == 0 || t.getSideC() == 0) {
+		// throw new IllegalArgumentException(
+		// "Side specifications do not form a triangle."
+		// + t.toString());
+		// }
 
 		if (t.getSideA() == t.getSideB() && t.getSideB() == t.getSideC()
 				&& t.getSideA() == t.getSideC()) {
 			return TriangleType.EQUILATERAL;
-		}
-
-		if (t.getSideA() == t.getSideB() || t.getSideB() == t.getSideC()
+		} else if (t.getSideA() == t.getSideB() || t.getSideB() == t.getSideC()
 				|| t.getSideA() == t.getSideC()) {
 			return TriangleType.ISOSCELES;
-		}
-
-		if (t.getSideA() != t.getSideB() && t.getSideB() != t.getSideC()
+		} else if (t.getSideA() != t.getSideB() && t.getSideB() != t.getSideC()
 				&& t.getSideA() != t.getSideC()) {
 			return TriangleType.SCALENE;
+		} else {
+			throw new RuntimeException("Inclassifiable triangle");
 		}
 
-		return TriangleType.EQUILATERAL;
+	}
+
+	/**
+	 * Check for co linearity of triangle's vertices.
+	 * 
+	 * @param t
+	 * @return
+	 */
+	private boolean isDegenerate(Triangle t) {
+
+		if ((t.getSideA() + t.getSideB() == t.getSideC())
+				|| (t.getSideB() + t.getSideC() == t.getSideA())
+				|| (t.getSideC() + t.getSideA() == t.getSideB())) {
+
+			return true;
+
+		}
+
+		return false;
+
 	}
 
 	/**
@@ -59,7 +80,7 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 
 		}
 
-		return true;
+		return false;
 	}
 
 	/**

@@ -2,12 +2,15 @@ package interview;
 
 import interview.api.Type;
 import interview.api.dto.Triangle;
+import interview.api.types.TriangleType;
 import interview.service.impl.TriangleClassifier;
 
 import java.util.Scanner;
 
 /**
- * This is the entry point of our application. It can be tested as a standalone module or can
+ * This is the entry point of our application. It can be tested as a standalone
+ * module or its behavior can be verified by its accompanying unit tests.
+ * 
  * @author niko.strongioglou
  *
  */
@@ -21,13 +24,13 @@ public class TriangleClassifierApplication {
 
 		System.out.println("Welcome to the triangle classifier!");
 		System.out
-				.println("Give the sides as input or type exit on next to terminate the classifier");
+				.println("Give the sides of the triangle as input for classification. \n"
+						+ "Answer with 'yes' or 'no' when prompted with continue.");
 
-		
-		String next="";
-		
-		while (!next.equalsIgnoreCase("exit")) {
-			
+		String next = "yes";
+
+		while (next.equalsIgnoreCase("yes")) {
+
 			System.out.print("Side A : ");
 			int sideA = s.nextInt();
 			s.nextLine();
@@ -46,25 +49,29 @@ public class TriangleClassifierApplication {
 
 			try {
 
-				Type type = triangleClassifier.classify(triangle);
+				TriangleType type = triangleClassifier.classify(triangle);
 
 				System.out.println("Input triangle is a " + type);
 
+			} catch (IllegalArgumentException e) {
+
+				System.out.println("Unclassifiable triangle. "
+						+ "Please try again with a different input."
+						+ e.getMessage());
+
 			} catch (Exception e) {
-				System.out
-						.println("Unclassifiable triangle. Please try again with a different input");
-			} finally {
+
 				s.close();
+				throw new RuntimeException("An unrecoverable exception occured");
 			}
-			
-			
-			System.out.print("next?  ");
-//			next = s.nextLine();
-			
+
+			System.out.print("continue?  ");
+			next = s.nextLine();
+
 		}
-		
-		
-		
+
+		System.out.println("Terminating triangle classification application");
+		s.close();
 
 	}
 

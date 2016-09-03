@@ -59,7 +59,7 @@ public class TriangleClassifierTests {
 	@Test
 	public void testScalene() throws Exception {
 
-		Triangle triangle = new Triangle(3, 2, 1);
+		Triangle triangle = new Triangle(54, 145, 119);
 
 		Type type = triangleClassifier.classify(triangle);
 
@@ -77,11 +77,20 @@ public class TriangleClassifierTests {
 
 		Triangle triangle = new Triangle(2, 1, 1);
 
+		try {
+			triangleClassifier.classify(triangle);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			// test passed
+		}
+
 	}
 
 	/**
 	 * Expecting an IllegalArgumentException to be produced as a result of a
-	 * zero length side as data input.
+	 * zero length side as data input. This case can be deduced to a case of a
+	 * non existent triangle for we cannot apply the inequality principle for a
+	 * triangle (0,2,1).
 	 * 
 	 * @throws Exception
 	 */
@@ -103,6 +112,15 @@ public class TriangleClassifierTests {
 	@Test
 	public void testNegativeSide() throws Exception {
 
+		Triangle triangle = new Triangle(-1, -1, -1);
+		
+		TriangleType type = triangleClassifier.classify(triangle);
+		
+	}
+	
+	@Test
+	public void testNoInput() throws Exception {
+		
 	}
 
 	// TODO Should we be considering such a case?

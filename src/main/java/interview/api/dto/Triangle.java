@@ -19,9 +19,9 @@ public class Triangle implements Shape {
 
 	public Triangle(int sideA, int sideB, int sideC) {
 		super();
-		this.sideA = sideA;
-		this.sideB = sideB;
-		this.sideC = sideC;
+		this.sideA = Math.abs(sideA);
+		this.sideB = Math.abs(sideB);
+		this.sideC = Math.abs(sideC);
 	}
 
 	public int getSideA() {
