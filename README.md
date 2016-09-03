@@ -10,8 +10,11 @@ There was the clear need to discriminate between implementation and test cases t
 The project was developed, built and tested with Java 1.8.
 
 There are three branches on this project :
+
 1. **master** : Contains the main implementation of the triangle classifier
+
 2. **big-integer** : Contains a `TriangleClassifier` implementation which handles triangles whose sides can be `BigInteger`s
+
 3. **classifier-factory** : Contains an abstraction of the classifier. Here you can specify what kind of classifier you want to use by providing the kind of `Shape` that you want to classify and the factory pattern will choose the appropriate one from a number of implementations.
 
 
