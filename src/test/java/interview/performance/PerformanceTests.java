@@ -25,10 +25,8 @@ import org.junit.Test;
 
 //TODO : Describe the way the tests were designed
 /**
- * This is a test suite aimed to test the limits of the classifications
+ * This is a test suite aimed to stretch the limits of the classifier
  * application in terms of heavy work load.
- * 
- * 
  * 
  * @author niko.strongioglou
  *
@@ -40,12 +38,13 @@ public class PerformanceTests {
 
 	@Before
 	public void setup() {
-		// TODO Auto-generated method stub
 
 	}
 
 	/**
-	 * Ran just to create the file for the stretch test.
+	 * Ran just to create the file for the stretch test. Creating a file
+	 * containing the side sizes of 100,000 triangles whose types we have
+	 * configured in advance.
 	 * 
 	 * @throws Exception
 	 */
@@ -55,8 +54,6 @@ public class PerformanceTests {
 
 		Path path = Paths.get("src/test/resources/triangles.txt");
 		List<String> triangles = new ArrayList<String>();
-
-		Random r = new Random();
 
 		for (int i = 1; i < BOUND; i++) {
 
@@ -88,7 +85,8 @@ public class PerformanceTests {
 	}
 
 	/**
-	 * You may remove I/O to optimize execution speed.
+	 * Test opens the file created by the test above and verifies that there are
+	 * "x" number of each. You may remove I/O to optimize execution speed.
 	 * 
 	 * @throws Exception
 	 */
@@ -104,7 +102,7 @@ public class PerformanceTests {
 		int isosceles = 0;
 		int scalenes = 0;
 		int unclassifiable = 0;
-		int lines = 0;
+
 		while (lineTokenizer.hasMoreTokens()) {
 
 			StringTokenizer sidesTokenizer = new StringTokenizer(
@@ -138,8 +136,6 @@ public class PerformanceTests {
 				unclassifiable++;
 			}
 
-			lines++;
-
 		}
 
 		Assert.assertEquals(19999, equilaterals);
@@ -147,13 +143,5 @@ public class PerformanceTests {
 		Assert.assertEquals(20000, scalenes);
 		Assert.assertEquals(20001, unclassifiable);
 
-		System.out.println("Read " + lines + " lines");
-		System.out.println("equilaterals were " + equilaterals);
-		System.out.println("isosceles were " + isosceles);
-		System.out.println("scalenes were " + scalenes);
-		System.out.println("unclassifiable were " + unclassifiable);
-		System.out.println("Checked "
-				+ (equilaterals + isosceles + scalenes + unclassifiable)
-				+ " triangles");
 	}
 }

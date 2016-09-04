@@ -1,7 +1,9 @@
 package interview.api.dto;
 
 /**
- * Using primitives for triangle sides since none of them can be nullable.
+ * Triangle is a shape implementation. Using primitives for triangle sides since
+ * none of them can be nullable. Using absolute values in constructor since
+ * classifier implementation will handle negative values as input.
  * 
  * @author niko.strongioglou
  *

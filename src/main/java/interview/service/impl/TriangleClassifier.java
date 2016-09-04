@@ -4,6 +4,13 @@ import interview.api.dto.Triangle;
 import interview.api.types.TriangleType;
 import interview.service.Classifier;
 
+/**
+ * A triangle {@code Classifier} implementation.Given any {@code Triangle} it
+ * will classify it to a {@code TriangelType}.
+ *
+ * @author niko.strongioglou
+ *
+ */
 public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 
 	public TriangleType classify(Triangle t) {

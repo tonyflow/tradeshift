@@ -129,23 +129,6 @@ public class TriangleClassifierTests {
 	}
 
 	/**
-	 * Scanner will always wait until a valid input is given. No such case is
-	 * applicable here.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testNoInput() throws Exception {
-
-	}
-
-	// TODO Should we be considering such a case?
-	@Test
-	public void testBigIntegerSide() throws Exception {
-
-	}
-
-	/**
 	 * Specify sides in a way which does not form a triangle.
 	 * 
 	 * @throws Exception

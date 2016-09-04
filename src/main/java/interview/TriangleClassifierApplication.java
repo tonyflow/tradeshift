@@ -8,8 +8,7 @@ import interview.service.impl.TriangleClassifier;
 import java.util.Scanner;
 
 /**
- * This is the entry point of our application. It can be tested as a standalone
- * module or its behavior can be verified by its accompanying unit tests.
+ * This is the entry point of our application.
  * 
  * @author niko.strongioglou
  *
