@@ -16,12 +16,6 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 			throw new IllegalArgumentException("Degenerate triangle");
 		}
 
-		// if (t.getSideA() == 0 || t.getSideB() == 0 || t.getSideC() == 0) {
-		// throw new IllegalArgumentException(
-		// "Side specifications do not form a triangle."
-		// + t.toString());
-		// }
-
 		if (t.getSideA() == t.getSideB() && t.getSideB() == t.getSideC()
 				&& t.getSideA() == t.getSideC()) {
 			return TriangleType.EQUILATERAL;
@@ -45,15 +39,9 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	 */
 	private boolean isDegenerate(Triangle t) {
 
-		if ((t.getSideA() + t.getSideB() == t.getSideC())
+		return (t.getSideA() + t.getSideB() == t.getSideC())
 				|| (t.getSideB() + t.getSideC() == t.getSideA())
-				|| (t.getSideC() + t.getSideA() == t.getSideB())) {
-
-			return true;
-
-		}
-
-		return false;
+				|| (t.getSideC() + t.getSideA() == t.getSideB());
 
 	}
 
@@ -72,19 +60,14 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	 */
 	private boolean exists(Triangle t) {
 
-		if ((t.getSideA() + t.getSideB() > t.getSideC())
+		return (t.getSideA() + t.getSideB() > t.getSideC())
 				&& (t.getSideB() + t.getSideC() > t.getSideA())
-				&& (t.getSideC() + t.getSideA() > t.getSideB())) {
-
-			return true;
-
-		}
-
-		return false;
+				&& (t.getSideC() + t.getSideA() > t.getSideB());
 	}
 
 	/**
 	 * Same as above but using semiperimeter to assert triangle's existence.
+	 * exists2() can substitute exist().
 	 * 
 	 * @param t
 	 * @return
