@@ -4,7 +4,7 @@
   router="FAN">  
   <interface id="1" language="java" name="interview.api.dto.Shape" project="interview" 
     file="/interview/src/main/java/interview/api/dto/Shape.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="75" width="114" x="45" y="50"/>    
+    <position height="75" width="114" x="78" y="385"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </interface>  
   <class id="2" language="java" name="interview.api.dto.Triangle" project="interview" 
     file="/interview/src/main/java/interview/api/dto/Triangle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="101" y="330"/>    
+    <position height="-1" width="-1" x="137" y="159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <enumeration id="3" language="java" name="interview.api.types.TriangleType" project="interview" 
     file="/interview/src/main/java/interview/api/types/TriangleType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="429" y="238"/>    
+    <position height="-1" width="-1" x="440" y="90"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </enumeration>  
   <interface id="4" language="java" name="interview.api.Type" project="interview" 
     file="/interview/src/main/java/interview/api/Type.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="426" y="78"/>    
+    <position height="-1" width="-1" x="452" y="244"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </interface>  
   <interface id="5" language="java" name="interview.service.Classifier" project="interview" 
     file="/interview/src/main/java/interview/service/Classifier.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="841" y="131"/>    
+    <position height="-1" width="-1" x="778" y="350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </interface>  
   <class id="6" language="java" name="interview.service.impl.TriangleClassifier" project="interview" 
     file="/interview/src/main/java/interview/service/impl/TriangleClassifier.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="853" y="305"/>    
+    <position height="-1" width="-1" x="780" y="122"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,28 +66,28 @@
     </display>  
   </class>  
   <realization id="8">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <realization id="10">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="11">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <dependency id="12">    
+  <realization id="9">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <dependency id="10">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="6"/>  
   </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <realization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <dependency id="13">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
