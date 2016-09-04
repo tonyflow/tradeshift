@@ -32,16 +32,13 @@ public class TriangleClassifierApplication {
 		while (next.equalsIgnoreCase("yes")) {
 
 			System.out.print("Side A : ");
-			int sideA = s.nextInt();
-			s.nextLine();
+			String sideA = s.nextLine();
 
 			System.out.print("Side B : ");
-			int sideB = s.nextInt();
-			s.nextLine();
+			String sideB = s.nextLine();
 
 			System.out.print("Side C : ");
-			int sideC = s.nextInt();
-			s.nextLine();
+			String sideC = s.nextLine();
 
 			Triangle triangle = new Triangle(sideA, sideB, sideC);
 

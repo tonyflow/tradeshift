@@ -1,5 +1,7 @@
 package interview.api.dto;
 
+import java.math.BigInteger;
+
 /**
  * Using primitives for triangle sides since none of them can be nullable.
  * 
@@ -8,46 +10,51 @@ package interview.api.dto;
  */
 public class Triangle implements Shape {
 
-	private int sideA;
-	private int sideB;
-	private int sideC;
+	private BigInteger sideA;
+	private BigInteger sideB;
+	private BigInteger sideC;
 
 	public Triangle() {
 
 	}
 
-	public Triangle(int sideA, int sideB, int sideC) {
-		super();
-		this.sideA = Math.abs(sideA);
-		this.sideB = Math.abs(sideB);
-		this.sideC = Math.abs(sideC);
-	}
-
-	public int getSideA() {
-		return sideA;
-	}
-
-	public void setSideA(int sideA) {
+	public Triangle(BigInteger sideA, BigInteger sideB, BigInteger sideC) {
 		this.sideA = sideA;
-	}
-
-	public int getSideB() {
-		return sideB;
-	}
-
-	public void setSideB(int sideB) {
 		this.sideB = sideB;
-	}
-
-	public int getSideC() {
-		return sideC;
-	}
-
-	public void setSideC(int sideC) {
 		this.sideC = sideC;
 	}
 
-	public void addAllSides(int[] sides) {
+	public Triangle(String sideA, String sideB, String sideC) {
+		this.sideA = new BigInteger(sideA);
+		this.sideB = new BigInteger(sideB);
+		this.sideC = new BigInteger(sideC);
+	}
+
+	public BigInteger getSideA() {
+		return sideA;
+	}
+
+	public void setSideA(BigInteger sideA) {
+		this.sideA = sideA;
+	}
+
+	public BigInteger getSideB() {
+		return sideB;
+	}
+
+	public void setSideB(BigInteger sideB) {
+		this.sideB = sideB;
+	}
+
+	public BigInteger getSideC() {
+		return sideC;
+	}
+
+	public void setSideC(BigInteger sideC) {
+		this.sideC = sideC;
+	}
+
+	public void addAllSides(BigInteger[] sides) {
 
 		if (sides.length > 3) {
 			throw new IllegalArgumentException("Triangle has only three sides");

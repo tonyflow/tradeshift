@@ -1,6 +1,10 @@
 package interview.service;
 
 import static org.junit.Assert.*;
+
+import java.math.BigInteger;
+import java.util.Random;
+
 import junit.framework.Assert;
 import interview.api.Type;
 import interview.api.dto.Triangle;
@@ -8,10 +12,18 @@ import interview.api.types.TriangleType;
 import interview.service.impl.TriangleClassifier;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * This suite for verifying the addition
+ * 
+ * @author niko.strongioglou
+ *
+ */
 public class TriangleClassifierTests {
 
+	private static final int ITERATIONS = 20;
 	private TriangleClassifier triangleClassifier = new TriangleClassifier();
 
 	@Before
@@ -20,150 +32,81 @@ public class TriangleClassifierTests {
 	}
 
 	/**
-	 * Verify correct classification of an equilateral triangle.
 	 * 
 	 * @throws Exception
 	 */
+	@Test
+	@Ignore
+	public void testBigInteger() throws Exception {
+
+		Random r = new Random();
+
+		for (int i = 0; i < ITERATIONS; i++) {
+			try {
+
+				System.out.println("New iteration");
+				System.out.println("===================");
+				BigInteger a = new BigInteger(234, r);
+				System.out.println(a);
+				System.out.println("===================");
+
+				BigInteger b = new BigInteger(234, r);
+				System.out.println(b);
+				System.out.println("===================");
+
+				BigInteger c = new BigInteger(234, r);
+				System.out.println(c);
+				System.out.println("===================");
+				Triangle t = new Triangle(a, b, c);
+
+				TriangleType type = triangleClassifier.classify(t);
+
+				System.out.println(type);
+
+			} catch (Exception e) {
+				// Ignore exception
+			}
+		}
+
+	}
+
 	@Test
 	public void testEquilateral() throws Exception {
 
-		Triangle triangle = new Triangle(1, 1, 1);
-
-		Type type = triangleClassifier.classify(triangle);
-
-		Assert.assertEquals(TriangleType.EQUILATERAL, type);
-
-	}
-
-	/**
-	 * Verify correct classification of an isosceles triangle.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testIsosceles() throws Exception {
-
-		Triangle triangle = new Triangle(2, 2, 1);
-
-		Type type = triangleClassifier.classify(triangle);
-
-		Assert.assertEquals(TriangleType.ISOSCELES, type);
-
-	}
-
-	/**
-	 * Verify correct classification of an scalene triangle.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testScalene() throws Exception {
-
-		// Triangle triangle = new Triangle(54, 145, 119);
-
-		Triangle triangle = new Triangle(2, 5, 4);
-		Type type = triangleClassifier.classify(triangle);
-
-		Assert.assertEquals(TriangleType.SCALENE, type);
-
-	}
-
-	/**
-	 * Triangle with a zero area and colinear vertices. A degenerate triangle.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testDegenerate() throws Exception {
-
-		Triangle triangle = new Triangle(2, 1, 3);
-
-		try {
-			triangleClassifier.classify(triangle);
-			Assert.fail();
-		} catch (IllegalArgumentException e) {
-			Assert.assertEquals("Degenerate triangle", e.getMessage());
-		}
-
-	}
-
-	/**
-	 * Expecting an IllegalArgumentException to be produced as a result of a
-	 * zero length side as data input. This case can be deduced to a case of a
-	 * non existent triangle for we cannot apply the inequality principle for a
-	 * triangle (0,2,1).
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testZeroSide() throws Exception {
-
-		Triangle triangle = new Triangle(0, 2, 1);
-
-		try {
-			triangleClassifier.classify(triangle);
-			Assert.fail();
-		} catch (Exception e) {
-			Assert.assertEquals(
-					"Triangle formation principle is not satisfied",
-					e.getMessage());
-		}
-
-	}
-
-	/**
-	 * Classifier can handle negative length by deducing their absolute values.
-	 * Classification will proceed normally after absolute value is retrieved.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testNegativeSide() throws Exception {
-
-		Triangle triangle = new Triangle(-1, -1, -1);
+		Triangle triangle = new Triangle(
+				"11833632370446395214854056631093199051331476434357803453848900937883441",
+				"11833632370446395214854056631093199051331476434357803453848900937883441",
+				"11833632370446395214854056631093199051331476434357803453848900937883441");
 
 		TriangleType type = triangleClassifier.classify(triangle);
 
 		Assert.assertEquals(TriangleType.EQUILATERAL, type);
-
 	}
 
-	/**
-	 * Scanner will always wait until a valid input is given. No such case is
-	 * applicable here.
-	 * 
-	 * @throws Exception
-	 */
 	@Test
-	public void testNoInput() throws Exception {
+	public void testIsosceles() throws Exception {
 
+		Triangle triangle = new Triangle(
+				"11833632370446395214854056631093199051331476434357803453848900937883441",
+				"11833632370446395214854056631093199051331476434357803453848900937883441",
+				"10729950880438966206203973695927670591571770587487290293856422073363014");
+
+		TriangleType type = triangleClassifier.classify(triangle);
+
+		Assert.assertEquals(TriangleType.ISOSCELES, type);
 	}
 
-	// TODO Should we be considering such a case?
 	@Test
-	public void testBigIntegerSide() throws Exception {
+	public void testScalene() throws Exception {
 
-	}
+		Triangle triangle = new Triangle(
+				"25175743036762384120037629208231877773111425443545756721812028389745738",
+				"27555861801640861913529457930336028809396543542143973589631217547672018",
+				"14608309176289070880681653718755881458519200159216768508139676928568665");
 
-	/**
-	 * Specify sides in a way which does not form a triangle.
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void testNonExistent() throws Exception {
+		TriangleType type = triangleClassifier.classify(triangle);
 
-		Triangle triangle = new Triangle(1, 1, 4);
-
-		try {
-			triangleClassifier.classify(triangle);
-			Assert.fail();
-		} catch (Exception e) {
-			Assert.assertEquals(
-					"Triangle formation principle is not satisfied",
-					e.getMessage());
-		}
-
+		Assert.assertEquals(TriangleType.SCALENE, type);
 	}
 
 }

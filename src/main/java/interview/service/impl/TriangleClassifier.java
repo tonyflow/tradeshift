@@ -8,27 +8,61 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 
 	public TriangleType classify(Triangle t) {
 
-		if (isDegenerate(t)) {
+		int a = (t.getSideA().add(t.getSideB())).compareTo(t.getSideC());
+		int b = (t.getSideB().add(t.getSideC())).compareTo(t.getSideA());
+		int c = (t.getSideC().add(t.getSideA())).compareTo(t.getSideB());
+
+		if (isDegenerate(a, b, c)) {
 			throw new IllegalArgumentException("Degenerate triangle");
 		}
 
-		if (!exists(t)) {
+		if (!exists(a, b, c)) {
 			throw new IllegalArgumentException(
 					"Triangle formation principle is not satisfied");
 		}
 
-		if (t.getSideA() == t.getSideB() && t.getSideB() == t.getSideC()
-				&& t.getSideA() == t.getSideC()) {
+		if (equilateral(t)) {
 			return TriangleType.EQUILATERAL;
-		} else if (t.getSideA() == t.getSideB() || t.getSideB() == t.getSideC()
-				|| t.getSideA() == t.getSideC()) {
+		} else if (isosceles(t)) {
 			return TriangleType.ISOSCELES;
-		} else if (t.getSideA() != t.getSideB() && t.getSideB() != t.getSideC()
-				&& t.getSideA() != t.getSideC()) {
+		} else if (scalene(t)) {
 			return TriangleType.SCALENE;
 		} else {
-			throw new RuntimeException("Inclassifiable triangle");
+			throw new RuntimeException("Unrecovarable exception triangle");
 		}
+
+	}
+
+	private boolean isosceles(Triangle t) {
+
+		return (t.getSideA().compareTo(t.getSideB()) == 0)
+				|| (t.getSideB().compareTo(t.getSideC()) == 0)
+				|| (t.getSideA().compareTo(t.getSideC()) == 0);
+
+	}
+
+	private boolean equilateral(Triangle t) {
+
+		return (t.getSideA().compareTo(t.getSideB()) == 0)
+				&& (t.getSideB().compareTo(t.getSideC()) == 0)
+				&& (t.getSideA().compareTo(t.getSideC()) == 0);
+
+	}
+
+	private boolean scalene(Triangle t) {
+
+		if (t.getSideA().compareTo(t.getSideB()) > 0
+				|| t.getSideA().compareTo(t.getSideB()) < 0) {
+			if (t.getSideB().compareTo(t.getSideC()) > 0
+					|| t.getSideB().compareTo(t.getSideC()) < 0) {
+				if (t.getSideA().compareTo(t.getSideC()) > 0
+						|| t.getSideA().compareTo(t.getSideC()) > 0) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 
 	}
 
@@ -38,11 +72,13 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	 * @param t
 	 * @return
 	 */
-	private boolean isDegenerate(Triangle t) {
+	private boolean isDegenerate(int a, int b, int c) {
 
-		return (t.getSideA() + t.getSideB() == t.getSideC())
-				|| (t.getSideB() + t.getSideC() == t.getSideA())
-				|| (t.getSideC() + t.getSideA() == t.getSideB());
+		return a == 0 || b == 0 || c == 0;
+		//
+		// return (t.getSideA() + t.getSideB() == t.getSideC())
+		// || (t.getSideB() + t.getSideC() == t.getSideA())
+		// || (t.getSideC() + t.getSideA() == t.getSideB());
 
 	}
 
@@ -59,25 +95,13 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	 * @param t
 	 * @return
 	 */
-	private boolean exists(Triangle t) {
+	private boolean exists(int a, int b, int c) {
 
-		return (t.getSideA() + t.getSideB() >= t.getSideC())
-				&& (t.getSideB() + t.getSideC() >= t.getSideA())
-				&& (t.getSideC() + t.getSideA() >= t.getSideB());
+		return a == 1 && b == 1 && c == 1;
+		//
+		// return (t.getSideA() + t.getSideB() >= t.getSideC())
+		// && (t.getSideB() + t.getSideC() >= t.getSideA())
+		// && (t.getSideC() + t.getSideA() >= t.getSideB());
 	}
 
-	/**
-	 * Same as above but using semiperimeter to assert triangle's existence.
-	 * exists2() can substitute exist().
-	 * 
-	 * @param t
-	 * @return
-	 */
-	private boolean exists2(Triangle t) {
-
-		int max = Math.max(Math.max(t.getSideA(), t.getSideB()), t.getSideC());
-
-		int s = (t.getSideA() + t.getSideB() + t.getSideC());
-		return max < s;
-	}
 }
