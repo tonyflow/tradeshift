@@ -6,5 +6,5 @@ On this implementation a classifier factory is used to produce the instance of t
 according to the shape which we want to classify. 
 The class diagram of the implementation is depicted below : 
 
-![alt text](https://github.com/tonyflow/tradeshift/blob/master/classifier-class-diagram.png "Class Diagram")
+![alt text](https://github.com/tonyflow/tradeshift/blob/classifier-factory/classifier-class-diagram.png "Class Diagram")
 
