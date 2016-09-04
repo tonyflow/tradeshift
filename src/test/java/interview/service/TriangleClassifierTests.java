@@ -16,7 +16,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * This suite for verifying the addition
  * 
  * @author niko.strongioglou
  *
