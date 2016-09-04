@@ -1,17 +1,17 @@
 # Tradeshift Triangle Classifier
 #### Design Overview and Analysis
 ____________________________________________
-The included Maven project's architecture is depicted in detail on the following UML diagram.
+The included Maven project's architecture is depicted in detail on the following class diagram.
 
 ![alt text](https://github.com/tonyflow/tradeshift/blob/master/classifier-class-diagram.png "Class Diagram")
 
-There was the clear need to discriminate between implementation and test cases thus I chose a Maven project to categorize the two and easily handle dependecy managegement for junit and java doc
+There was the clear need to discriminate between implementation and test cases thus I chose a Maven project to categorize the two and easily handle dependecy managegement for junit,build lifecycle and java doc
 
 The project was developed, built and tested with Java 1.8.
 
 There are three branches on this project :
 
-1. **master** : Contains the main implementation of the triangle classifier
+1. **master** : Contains the main implementation of the triangle classifier.
 
 2. **big-integer** : Contains a `TriangleClassifier` implementation which handles triangles whose sides can be `BigInteger`s
 
@@ -27,8 +27,15 @@ public interface Classifier<S extends Shape,T extends Type> {
 ```
 
 
-Its type parameters represent the `Shape` one wants to classify and the `Type` which is advised to be an enumeration of the available types a shape can be classified into.
-`Type` was declared as an interface since enumerations (concrete shape types) cannnot extend other classes(implicutly extending `Enum`).
+Its type parameters represent the `Shape` one wants to classify and the `Type` which is advised to be an enumeration of the available types a shape can be classified into. Like the `TriangleType` shown below : 
+
+```java
+public enum TriangleType implements Type {
+	EQUILATERAL, ISOSCELES, SCALENE;
+}
+```
+
+`Type` was declared as an interface since enumerations (concrete shape types) cannot extend other classes(implicitly extending `Enum`).
 `Shape` is an interface to serve future evolution purposes (method additions etc).
 
 The entry point of the application is the `TriangleClassifierApplication` which also provides a user interface for data input.
@@ -55,7 +62,7 @@ The edge cases handled were the following:
 
 2.**Degenerate Triangle** : This is a triangle whose vertices are colinear. This kind of degenerations cannot be classified.
 
-3.**Triangle does not exist** : 
+3.**Triangle does not exist** : The sides do not satisfy the triangle inequality principle thus we cannot form a triangle using them.
 
 4.**Zero edges** : The classifier is given an illegal argument. There does not exist a zero edged triangle. This case can be deduced to case \#3.
 
