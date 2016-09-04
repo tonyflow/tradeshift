@@ -6,3 +6,4 @@
 *.iml
 /src/main/java/interview/classifier-class-diagram.ucls
 /src/main/java/interview/classifier-class-diagram.png
+/src/test/resources/triangles.txt

@@ -59,8 +59,9 @@ public class TriangleClassifierTests {
 	@Test
 	public void testScalene() throws Exception {
 
-		Triangle triangle = new Triangle(54, 145, 119);
+		// Triangle triangle = new Triangle(54, 145, 119);
 
+		Triangle triangle = new Triangle(2, 5, 4);
 		Type type = triangleClassifier.classify(triangle);
 
 		Assert.assertEquals(TriangleType.SCALENE, type);
@@ -68,20 +69,20 @@ public class TriangleClassifierTests {
 	}
 
 	/**
-	 * Triangle with a zero area. A degenerate triangle.
+	 * Triangle with a zero area and colinear vertices. A degenerate triangle.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testDegenerate() throws Exception {
 
-		Triangle triangle = new Triangle(2, 1, 1);
+		Triangle triangle = new Triangle(2, 1, 3);
 
 		try {
 			triangleClassifier.classify(triangle);
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
-			// test passed
+			Assert.assertEquals("Degenerate triangle", e.getMessage());
 		}
 
 	}
@@ -94,12 +95,19 @@ public class TriangleClassifierTests {
 	 * 
 	 * @throws Exception
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testZeroSide() throws Exception {
 
 		Triangle triangle = new Triangle(0, 2, 1);
 
-		triangleClassifier.classify(triangle);
+		try {
+			triangleClassifier.classify(triangle);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals(
+					"Triangle formation principle is not satisfied",
+					e.getMessage());
+		}
 
 	}
 
@@ -113,14 +121,22 @@ public class TriangleClassifierTests {
 	public void testNegativeSide() throws Exception {
 
 		Triangle triangle = new Triangle(-1, -1, -1);
-		
+
 		TriangleType type = triangleClassifier.classify(triangle);
-		
+
+		Assert.assertEquals(TriangleType.EQUILATERAL, type);
+
 	}
-	
+
+	/**
+	 * Scanner will always wait until a valid input is given. No such case is
+	 * applicable here.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testNoInput() throws Exception {
-		
+
 	}
 
 	// TODO Should we be considering such a case?
@@ -137,15 +153,15 @@ public class TriangleClassifierTests {
 	@Test
 	public void testNonExistent() throws Exception {
 
-		Triangle triangle = new Triangle(3, 2, 1);
+		Triangle triangle = new Triangle(1, 1, 4);
 
 		try {
 			triangleClassifier.classify(triangle);
 			Assert.fail();
 		} catch (Exception e) {
-
-			// test passed
-
+			Assert.assertEquals(
+					"Triangle formation principle is not satisfied",
+					e.getMessage());
 		}
 
 	}

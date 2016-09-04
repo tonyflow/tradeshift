@@ -28,9 +28,10 @@ public interface Classifier<S extends Shape,T extends Type> {
 
 
 Its type parameters represent the `Shape` one wants to classify and the `Type` which is advised to be an enumeration of the available types a shape can be classified into.
+`Type` was declared as an interface since enumerations (concrete shape types) cannnot extend other classes(implicutly extending `Enum`).
+`Shape` is an interface to serve future evolution purposes (method additions etc).
 
-For the `TriangleClassifier`, which is the required implementation of the aforementioned `Classifier`
-
+The entry point of the application is the `TriangleClassifierApplication` which also provides a user interface for data input.
 
 
 #### Implementation Details and Mathematical background
@@ -42,6 +43,8 @@ The actual implementation of `TriangleClassifier` will first verify that there i
 
 2.**Semiperimeter formula** : 
 > max(a,b,c)<s, where s=(a+b+c)/2
+
+
 _________________________________
 **Edge case handling**
 

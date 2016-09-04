@@ -8,12 +8,13 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 
 	public TriangleType classify(Triangle t) {
 
-		if (!exists(t)) {
-			throw new IllegalArgumentException("Zero edged triangle");
-		}
-
 		if (isDegenerate(t)) {
 			throw new IllegalArgumentException("Degenerate triangle");
+		}
+
+		if (!exists(t)) {
+			throw new IllegalArgumentException(
+					"Triangle formation principle is not satisfied");
 		}
 
 		if (t.getSideA() == t.getSideB() && t.getSideB() == t.getSideC()
@@ -60,9 +61,9 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 	 */
 	private boolean exists(Triangle t) {
 
-		return (t.getSideA() + t.getSideB() > t.getSideC())
-				&& (t.getSideB() + t.getSideC() > t.getSideA())
-				&& (t.getSideC() + t.getSideA() > t.getSideB());
+		return (t.getSideA() + t.getSideB() >= t.getSideC())
+				&& (t.getSideB() + t.getSideC() >= t.getSideA())
+				&& (t.getSideC() + t.getSideA() >= t.getSideB());
 	}
 
 	/**
