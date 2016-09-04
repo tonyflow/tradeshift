@@ -4,7 +4,7 @@ import interview.service.Classifier;
 import interview.service.impl.TriangleClassifier;
 
 /**
- * A factory producing a number of classifiers based on the kind of shape we
+ * A factory producing a number of {@code Classifier}s based on the kind of shape we
  * want to classify. The if / else cases can be extended to any number of shapes
  * and types.
  * 
