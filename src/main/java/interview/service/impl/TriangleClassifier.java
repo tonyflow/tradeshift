@@ -1,5 +1,7 @@
 package interview.service.impl;
 
+import java.util.Scanner;
+
 import interview.api.dto.Triangle;
 import interview.api.types.TriangleType;
 import interview.service.Classifier;
@@ -78,5 +80,23 @@ public class TriangleClassifier implements Classifier<Triangle, TriangleType> {
 
 		int s = (t.getSideA() + t.getSideB() + t.getSideC());
 		return max < s;
+	}
+
+	@Override
+	public Triangle getShape(Scanner s) {
+		
+		System.out.print("Side A : ");
+		int sideA = s.nextInt();
+		s.nextLine();
+
+		System.out.print("Side B : ");
+		int sideB = s.nextInt();
+		s.nextLine();
+
+		System.out.print("Side C : ");
+		int sideC = s.nextInt();
+		s.nextLine();
+
+		return new Triangle(sideA, sideB, sideC);
 	}
 }
