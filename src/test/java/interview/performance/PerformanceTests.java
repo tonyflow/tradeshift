@@ -23,14 +23,16 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-//TODO : Describe the way the tests were designed
 /**
  * This is a test suite aimed to stretch the limits of the classifier
- * application in terms of heavy work load.
+ * application in terms of heavy work load. Tests are currently ignored. On
+ * execution "testCreateTestFile" should be executed first in order to the
+ * triangles.txt to be created.
  * 
  * @author niko.strongioglou
  *
  */
+@Ignore
 public class PerformanceTests {
 
 	private static final int BOUND = 100_001;
@@ -49,7 +51,6 @@ public class PerformanceTests {
 	 * @throws Exception
 	 */
 	@Test
-	@Ignore
 	public void testCreateTestFile() throws Exception {
 
 		Path path = Paths.get("src/test/resources/triangles.txt");
